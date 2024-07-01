@@ -1,0 +1,73 @@
+#!/usr/bin/expect -f
+
+# Expect script to launch control 'bringup' from another Xavier
+# Kills any remnant previous instance
+# Set HOSTID based on control server Xavier's IP address (192.168.0.***)
+# Udupa; Aug'23
+
+
+set HOSTID 221
+
+set timeout -1
+set prompt "(#|\\$) $"
+
+
+if {$HOSTID > 0} {
+	spawn ssh "tomo@192.168.0.$HOSTID"
+	expect -gl "password"
+	send "tomo\r"
+} else {
+	spawn /bin/bash
+}
+expect -re $prompt
+
+send "sudo bash\r"
+expect -re $prompt
+
+# send "timedatectl set-ntp true\r"
+# expect -re $prompt
+
+# send "sudo systemctl restart systemd-timesyncd.service\r"
+# expect -re $prompt
+
+send "pkill -9 roslaunch\r"
+expect -re $prompt
+
+send "pkill -9 tomo_system\r"
+expect -re $prompt
+
+send "rosclean purge -y\r"
+expect -re $prompt
+
+send "clear && cd ~/ws_tomo\r"
+expect -re $prompt
+
+set directory_path "~/ws_tomo/install/share/tomo_control"
+
+# Use the file exists command to check if the directory exists
+if {[file exists $directory_path]} {
+    # If directory exists, source setup.bash and launch ROS
+    send "source ./install/setup.bash && roslaunch tomo_control tomo_bringup.launch desc:=carton\r"
+    expect -re $prompt
+} else {
+    # If directory does not exist, handle the missing directory
+    send "ls . | grep install_bk.zip\r"
+    expect -re "install_bk.zip"
+    send "sudo rm -rf install/\r"
+    expect -re $prompt
+    send "sudo unzip -a -o install_bk.zip\r"
+    expect -re $prompt
+    send "sudo chmod -R 777 ~/ws_tomo/install\r"
+    expect -re $prompt
+    send "source ./install/setup.bash && roslaunch tomo_control tomo_bringup.launch desc:=carton\r"
+    expect -re $prompt
+}
+
+# send "clear && cd ~/ws_tomo && source ./install/setup.bash && roslaunch tomo_control tomo_bringup.launch desc:=carton\r"
+# expect -re $prompt
+
+send "exit\r"
+expect -re $prompt
+
+send "exit\r"
+expect eof

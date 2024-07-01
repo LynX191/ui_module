@@ -1,0 +1,466 @@
+titleModel:
+  - name: "General"
+  - name: "S01. Bottom Shipper Tray Input Module"
+  - name: "S02. Top Shipper Tray Input Module"
+  - name: "S03. Input Tray Pick & Place"
+  - name: "S04. Automated Folding (Afolding)"
+  - name: "S05. TomO"
+  - name: "S06. Carton Loader"
+  - name: "S07. Carton Transfer"
+  - name: "S08. Tray Transfer & Placement"
+  - name: "S09. Output Tray Pick & Place"
+  - name: "S10a. Carton Rotation Conveyor"
+  - name: "S10b. Infeed Carton Conveyor"
+  - name: "S10c. Carton Sampling Conveyor"
+  - name: "S11. Output Tray Stack"
+
+ioModel:
+      '0':
+            - {name: Guard Door Lock/Unlock,                orderState: 1  , columnN: 6 } # Control (1-16)
+            # - {name: Reset,                              orderState: 2  , columnN: 2 }
+            # - {name: Start,                              orderState: 3  , columnN: 2 }
+            # - {name: Stop,                               orderState: 4  , columnN: 2 }
+      '1':
+            - {name: BSTIM Shipper Guide Position,          orderState: 17 , columnN: 3 } # Base Shipper Tray Input (17-32)
+      '2':
+            {} # Top Shipper Tray Input (33-48)
+      '3':
+            - {name: Input PnP Vacuum,                      orderState: 49 , columnN: 3 } # Input Tray Pick & Place (49-64)
+            - {name: Input Shipper Tray Pick Up,            orderState: 50 , columnN: 3 }
+            - {name: Input Shipper Tray Place,              orderState: 51 , columnN: 3 }
+      '4':
+            - {name: Tray Fold Clamp 1,                     orderState: 65 , columnN: 3 } # Afolding  (65-80)
+            - {name: Tray Fold Clamp 2,                     orderState: 66 , columnN: 3 }
+            - {name: Side Guide,                            orderState: 67 , columnN: 3 }
+            - {name: Tucker,                                orderState: 68 , columnN: 3 }
+            - {name: Tucker Finger,                         orderState: 69 , columnN: 3 }
+            - {name: Shoulder Clamp,                        orderState: 70 , columnN: 3 }
+            - {name: Flag Fold,                             orderState: 71 , columnN: 3 }
+            - {name: Tray Height Conv,                      orderState: 72 , columnN: 3 }
+            - {name: Tray Base Vacuum,                      orderState: 73 , columnN: 2 }
+            - {name: Tray Shuffle Vacuum,                   orderState: 74 , columnN: 2 }
+            - {name: Tray Clamp Vacuum,                     orderState: 75 , columnN: 2 }
+      '5':
+            - {name: Right Gripper,                         orderState: 81 , columnN: 3 } # TomO Gripper  (81-96)
+            - {name: Left Gripper Vacuum,                   orderState: 82 , columnN: 3 }
+      '6':
+            - {name: Back Tray Clamp,                       orderState: 97 , columnN: 3 } # Carton Loader (97-112)
+            - {name: Side Tray Clamp,                       orderState: 98 , columnN: 3 }
+            - {name: Tray Load,                             orderState: 99 , columnN: 3 }
+            - {name: Tray Tilt,                             orderState: 100, columnN: 3 }
+            - {name: Shipper Push Out,                      orderState: 101, columnN: 3 }
+      '7':
+            - {name: Carton Conveyor Guide,                 orderState: 113, columnN: 3 } # Carton Stack and Transfer (PIM) (113-128)
+            - {name: Carton Transfer,                       orderState: 114, columnN: 3 }
+            - {name: Carton Conv,                           orderState: 115, columnN: 3 }
+            - {name: Carton Stack Buffer,                   orderState: 116, columnN: 3 }
+            - {name: Carton Stack,                          orderState: 117, columnN: 3 }
+            - {name: Carton Conv Stopper,                   orderState: 118, columnN: 3 }
+            - {name: Carton Pick Station,                   orderState: 119, columnN: 3 }
+            - {name: Carton Conv Pusher,                    orderState: 120, columnN: 3 }
+            - {name: Carton Buffer Pick Station,            orderState: 121, columnN: 3 }
+            # - {name: A3-A4-A5,                           orderState: 122, columnN: 6 }
+      '8':
+            - {name: Tray Clamp,                            orderState: 129, columnN: 3 } # Tray transfer and placement (129-144)
+      '9':
+            - {name: Gripper Tray Clamp,                    orderState: 145, columnN: 3 } # Output tray Pick & Place (145-160)
+      '10':
+            - {name: Carton Rotation,                       orderState: 161, columnN: 3 } # Carton Rotation Conveyor 10a (161-176)
+      '11':
+            {} # Infeed Carton Conveyor 10b (161-176)
+      '12':
+            {} # Carton Sampling Conveyor 10c (161-176)
+      '13':
+            - {name: Trolley Lock 1,                     orderState: 177, columnN: 3 } # Output tray stack (Trolley) (177-192)
+            - {name: Trolley Lock 2,                     orderState: 178, columnN: 3 }
+            # - {name: Infeed Tray Load Confirm T1,        orderState: 179, columnN: 3 }
+            # - {name: Infeed Tray Load Confirm T2,        orderState: 180, columnN: 3 }
+
+outputItemModel:
+      '1':
+            - {name: Lock,          pin: 5  , module: 1  , id: IDO 5-1 } # Control (1-16)
+            - {name: Unlock,        pin: 5  , module: 1  , id: IDO 5-1 } # Control (1-16)
+      '2':
+            - {name: Reset,         pin: 2  , module: 1  , id: IDO 2-1 }
+      '3':
+            - {name: Start,         pin: 3  , module: 1  , id: IDO 3-1 }
+      '4':
+            - {name: Stop,          pin: 4  , module: 1  , id: IDO 4-1 }
+
+      '17':
+            - {name: 5/30p,         pin: 1  , module: 2  , id: IDO 1-2 } # Base Shipper Tray Input (17-32)
+            - {name: 90p,           pin: 2  , module: 2  , id: IDO 2-2 }
+
+      '49':
+            - {name: Vacuum,        pin: 7  , module: 2  , id: IDO 7-2 } # Input Tray Pick & Place (17-32)
+            - {name: Purge,         pin: 8  , module: 2  , id: IDO 8-2 }
+      '50':
+            - {name: Ext,           pin: 13 , module: 2  , id: IDO 13-2 }
+            - {name: Ret,           pin: 14 , module: 2  , id: IDO 14-2 }
+      '51':
+            - {name: Ext,           pin: 15 , module: 2  , id: IDO 15-2 }
+            - {name: Ret,           pin: 16 , module: 2  , id: IDO 16-2 }
+      '65':
+            - {name: Ext,           pin: 1  , module: 3  , id: IDO 1-3 } # AFolding
+            - {name: Ret,           pin: 2  , module: 3  , id: IDO 2-3 }
+      '66':
+            - {name: Ext,           pin: 3  , module: 3  , id: IDO 3-3 }
+            - {name: Ret,           pin: 4  , module: 3  , id: IDO 4-3 }
+      '67':
+            - {name: Ext,           pin: 5  , module: 3  , id: IDO 5-3 }
+            - {name: Ret,           pin: 6  , module: 3  , id: IDO 6-3 }
+      '68':
+            - {name: Ext,           pin: 7  , module: 3  , id: IDO 7-3 }
+            - {name: Ret,           pin: 8  , module: 3  , id: IDO 8-3 }
+      '69':
+            - {name: Ext,           pin: 9  , module: 3  , id: IDO 9-3 }
+            - {name: Ret,           pin: 10 , module: 3  , id: IDO 10-3 }
+      '70':
+            - {name: Ext,           pin: 11 , module: 3  , id: IDO 11-3 }
+            - {name: Ret,           pin: 12 , module: 3  , id: IDO 12-3 }
+      '71':
+            - {name: Ext,           pin: 13 , module: 3  , id: IDO 13-3 }
+            - {name: Ret,           pin: 14 , module: 3  , id: IDO 14-3 }
+      '72':
+            - {name: Ext,           pin: 15 , module: 3  , id: IDO 15-3 }
+            - {name: Ret,           pin: 16 , module: 3  , id: IDO 16-3 }
+      '73':
+            - {name: Vacuum,        pin: 1  , module: 7  , id: IDO 1-7 }
+      '74':
+            - {name: Vacuum,        pin: 2  , module: 7  , id: IDO 2-7 }
+      '75':
+            - {name: Vacuum,        pin: 3  , module: 7  , id: IDO 3-7 }
+      '81':
+            - {name: Open,          pin: 1  , module: 4, id: IDO 1-4  } # RIGHT GRIPPER Clamp
+            - {name: Close,         pin: 2  , module: 4, id: IDO 2-4  }
+      '82':
+            - {name: Vacuum,        pin: 3  , module: 4, id: IDO 3-4  } # LEFT GRIPPER
+            - {name: Purge,         pin: 4  , module: 4, id: IDO 4-4  }
+      '97':
+            - {name: Clamp,         pin: 5  , module: 4, id: IDO 5-4  } # BACK TRAY
+            - {name: Unclamp,       pin: 5  , module: 4, id: IDO 5-4  }
+      '98':
+            - {name: Clamp,         pin: 7  , module: 4, id: IDO 7-4  } # SIDE TRAY
+            - {name: Unclamp,       pin: 7  , module: 4, id: IDO 7-4  }
+      '99':
+            - {name: Load,          pin: 9  , module: 4, id: IDO 9-4  } # TRAY Load
+            - {name: Unload,        pin: 9  , module: 4, id: IDO 9-4  }
+      '100':
+            - {name: Up,            pin: 11 , module: 4, id: IDO 11-4 } # TRAY TILT
+            - {name: Down,          pin: 12 , module: 4, id: IDO 12-4 }
+      '101':
+            - {name: Ext,           pin: 11 , module: 5, id: IDO 11-5 } # SHIPPER PUSH OUT
+            - {name: Ret,           pin: 12 , module: 5, id: IDO 12-5 }
+
+      '113':
+            - {name: Ext ,          pin: 15 , module: 5, id: IDO 15-5 } # CARTON CONVEYOR GUIDE (5/30 PACK)
+            - {name: Ret ,          pin: 15 , module: 5, id: IDO 15-5 }
+      '114':
+            - {name: Ext,           pin: 1  , module: 6, id: IDO 1-6  } # CARTON TRANSFER
+            - {name: Ret,           pin: 1  , module: 6, id: IDO 1-6  }
+      '115':
+            - {name: Ext,           pin: 3  , module: 6, id: IDO 3-6  } # CARTON CONV. CYLINDER
+            - {name: Ret,           pin: 4  , module: 6, id: IDO 4-6  }
+      '116':
+            - {name: Ext,           pin: 5  , module: 6, id: IDO 5-6  } # CARTON STACK BUFFER PUSHER
+            - {name: Ret,           pin: 6  , module: 6, id: IDO 6-6  }
+      '117':
+            - {name: Ext,           pin: 7  , module: 6, id: IDO 7-6  } # CARTON STACK PUSHER
+            - {name: Ret,           pin: 8  , module: 6, id: IDO 8-6  }
+      '118':
+            - {name: Ext,           pin: 9  , module: 6, id: IDO 9-6  } # CARTON CONV STOPPER
+            - {name: Ret,           pin: 10 , module: 6, id: IDO 10-6  }
+      '119':
+            - {name: Ext,           pin: 11 , module: 6, id: IDO 11-6  } # CARTON PICK STATION PUSHER
+            - {name: Ret,           pin: 12 , module: 6, id: IDO 12-6  }
+      '120':
+            - {name: Ext,           pin: 13 , module: 6, id: IDO 13-6  } # CARTON CONV PUSHER
+            - {name: Ret,           pin: 14 , module: 6, id: IDO 14-6  }
+      '121':
+            - {name: Ext,           pin: 15 , module: 6, id: IDO 15-6  } # CARTON BUFFER PICK STATION PUSHER
+            - {name: Ret,           pin: 16 , module: 6, id: IDO 16-6  }
+      '122':
+            - {name: IN0,           pin: 3  , module: 8, id: IDO 3-8   } # IN0-IN1-IN2
+            - {name: IN1,           pin: 4  , module: 8, id: IDO 4-8   }
+            - {name: IN2,           pin: 5  , module: 8, id: IDO 5-8   }
+      '129':
+            - {name: Clamp,         pin: 13 , module: 4, id: IDO 13-4  } # TRAY Clamp
+            - {name: Unclamp,       pin: 14 , module: 4, id: IDO 14-4  }
+      '145':
+            - {name: Clamp,         pin: 7  , module: 5, id: IDO 7-5   } # GRIPPER TRAY
+            - {name: Unclamp,       pin: 8  , module: 5, id: IDO 8-5   }
+      '161':
+            - {name: 90p,           pin: 5  , module: 7, id: IDO 5-7   } # Carton Rotation
+            - {name: 5/30p,         pin: 7  , module: 7, id: IDO 7-7   }
+      '177':
+            - {name: Lock,          pin: 9  , module: 5, id: IDO 9-5   } # TROLLEY Lock 1
+            - {name: Unlock,        pin: 9  , module: 5, id: IDO 9-5   }
+      '178':
+            - {name: Lock,          pin: 10 , module: 5, id: IDO 10-5  } # TROLLEY Lock 2
+            - {name: Unlock,        pin: 10 , module: 5, id: IDO 10-5  }
+      # '179':
+      #       - {name: Load,          pin: 13 , module: 5, id: IDO 13-5  } # INFEED TRAY Load CONFIRM T1
+      #       - {name: Unload,        pin: 13 , module: 5, id: IDO 13-5  }
+      # '180':
+      #       - {name: Load,          pin: 14 , module: 5, id: IDO 14-5  } # INFEED TRAY Load CONFIRM T2
+      #       - {name: Unload,        pin: 14 , module: 5, id: IDO 14-5  }
+
+inputItemModel:
+      '1':
+            - {pin: 5 , module: 1, id: IDI 5-1   } # Guard Door 1 Lock
+            - {pin: 6 , module: 1, id: IDI 6-1   } # Guard Door 2 Lock
+            - {pin: 7 , module: 1, id: IDI 7-1   } # Guard Door 3 Lock
+      '2':
+            - {pin: 2 , module: 1, id: IDI 2-1   } # Reset
+      '3':
+            - {pin: 3 , module: 1, id: IDI 3-1   } # Start
+      '4':
+            - {pin: 4 , module: 1, id: IDI 4-1   } # Stop
+
+      '17':
+            - {pin: 7 , module: 2, id: IDI 7-2   } # BSTIM 5/30 pack guide position
+            - {pin: 8 , module: 2, id: IDI 8-2   }
+      '49':
+            - {pin: 11, module: 2, id: IDI 11-2  } # Input PnP Vacuum
+      '50':
+            - {pin: 5 , module: 3, id: IDI 5-3   } # Tray pick down
+            - {pin: 6 , module: 3, id: IDI 6-3   } # Tray pick up
+      '51':
+            - {pin: 7 , module: 3, id: IDI 7-3   } # Tray place down
+            - {pin: 8 , module: 3, id: IDI 8-3   } # Tray place up
+
+      '65':
+            - {pin: 9 , module: 3, id: IDI 9-3   } # Tray Fold Clamp 1 Ext
+            - {pin: 10, module: 3, id: IDI 10-3  } # Tray Fold Clamp 1 Ret
+      '66':
+            - {pin: 11, module: 3, id: IDI 11-3  } # Tray Fold Clamp 2 Ext
+            - {pin: 12, module: 3, id: IDI 12-3  } # Tray Fold Clamp 2 Ret
+      '67':
+            - {pin: 13, module: 3, id: IDI 13-3  } # Side Guide Ext
+            - {pin: 14, module: 3, id: IDI 14-3  } # Side Guide Ret
+      '68':
+            - {pin: 15, module: 3, id: IDI 15-3  } # Tucker Ext
+            - {pin: 16, module: 3, id: IDI 16-3  } # Tucker Ret
+      '69':
+            - {pin: 12, module: 7, id: IDI 12-7  } # Tucker Finger Ext
+            - {pin: 13, module: 7, id: IDI 13-7  } # Tucker Finger Ret
+      '70':
+            - {pin: 14, module: 7, id: IDI 14-7  } # Shoulder Clamp Ext
+            - {pin: 15, module: 7, id: IDI 15-7  } # Shoulder Clamp Ret
+      '71':
+            - {pin: 16, module: 7, id: IDI 16-7  } # Flag Fold Ext 
+            - {pin: 1 , module: 8, id: IDI 1-8   } # Flag Fold Ret
+      '72':
+            - {pin: 2 , module: 8, id: IDI 2-8   } # Tray Height Conv Ext
+            - {pin: 3 , module: 8, id: IDI 3-8   } # Tray height Conv Ret
+      '73':
+            - {pin: 4 , module: 8, id: IDI 4-8   } # Tray Base Vaccum Switch
+      '74':
+            - {pin: 5 , module: 8, id: IDI 5-8   } # Tray Shuffle Vacuum Switch
+      '75':
+            - {pin: 6 , module: 8, id: IDI 6-8   } # Tray Clamp Vacuum Switch
+
+      '81':
+            - {pin: 1 , module: 4, id: IDI 1-4   } # Right Gripper Clamp Open
+            - {pin: 2 , module: 4, id: IDI 2-4   } # Right Gripper Clamp Close
+      '82':
+            - {pin: 3 , module: 4, id: IDI 3-4   } # Left Gripper Vaccum feedback
+
+      '97':
+            - {pin: 5 , module: 4, id: IDI 5-4   } # Back Tray Clamp 
+            - {pin: 6 , module: 4, id: IDI 6-4   } # Back Tray Unclamp
+      '98':
+            - {pin: 7 , module: 4, id: IDI 7-4   } # Side Tray Clamp
+            - {pin: 8 , module: 4, id: IDI 8-4   } # Side Tray Unclamp
+      '99':
+            - {pin: 9 , module: 4, id: IDI 9-4   } # Tray Load
+            - {pin: 10, module: 4, id: IDI 10-4  } # Tray Unload
+      '100':
+            - {pin: 11, module: 4, id: IDI 11-4  } # Tray Tilt Up
+            - {pin: 12, module: 4, id: IDI 12-4  } # Tray Tilt Down
+      '101':
+            - {pin: 4 , module: 2, id: IDI 4-2   } # Shipper push out Ext
+            - {pin: 5 , module: 2, id: IDI 5-2   } # Shipper push out Ret
+
+      '129':
+            - {pin: 15, module: 4, id: IDI 15-4  } # Tray Clamp
+            - {pin: 16, module: 4, id: IDI 16-4  } # Tray Unclamp
+
+      '145':
+            - {pin: 8 , module: 5, id: IDI 8-5   } # Gripper Tray Clamp
+            - {pin: 9 , module: 5, id: IDI 9-5   } # Gripper Tray Unclamp
+      '161':
+            - {pin: 14, module: 9, id: IDI 14-9  } # Carton Rotation 90p
+            - {pin: 15, module: 9, id: IDI 15-9  } # Carton Rotation 5/30p
+      '177':
+            - {pin: 2 , module: 6, id: IDI 2-6   } # Trolley Lock #1
+            - {pin: 3 , module: 6, id: IDI 3-6   } # Trolley Unlock #1
+      '178':
+            - {pin: 4 , module: 6, id: IDI 4-6   } # Trolley Lock #2
+            - {pin: 5 , module: 6, id: IDI 5-6   } # Trolley Unlock #2
+      # '179':
+      #       - {pin: 6 , module: 6, id: IDI 6-6   } # Infeed Tray Load confirm T1
+      #       - {pin: 7 , module: 6, id: IDI 7-6   } # Infeed Muting Curtain ON T1
+      # '180':
+      #       - {pin: 8 , module: 6, id: IDI 8-6   } # Infeed Tray Load confirm  T2
+      #       - {pin: 9 , module: 6, id: IDI 9-6   } # Infeed Muting Curtain ON T2
+
+      '113':
+            - {pin: 10, module: 6, id: IDI 10-6  } # Carton Conveyor Guide Ext (5/30 Pack)
+            - {pin: 11, module: 6, id: IDI 11-6  } # Carton Conveyor Guide Ret (5/30 Pack)
+      '114':
+            - {pin: 12, module: 6, id: IDI 12-6  } # Carton Transfer Ext
+            - {pin: 13, module: 6, id: IDI 13-6  } # Carton Transfer Ret
+      '119':
+            - {pin: 14, module: 6, id: IDI 14-6  } # Carton Pick Station Pusher Ext
+            - {pin: 15, module: 6, id: IDI 15-6  } # Carton Pick Station Pusher Ret
+      '116':
+            - {pin: 16, module: 6, id: IDI 16-6  } # Carton Stack Buffer Pusher Ext
+            - {pin: 1 , module: 7, id: IDI 1-7   } # Carton Stack Buffer Pusher Ret
+      '117':
+            - {pin: 2 , module: 7, id: IDI 2-7   } # Carton Stack Pusher  Ext 
+            - {pin: 3 , module: 7, id: IDI 3-7   } # Carton Stack Pusher  Ret
+      '118':
+            - {pin: 4 , module: 7, id: IDI 4-7   } # Carton Conv Stopper Ext
+            - {pin: 5 , module: 7, id: IDI 5-7   } # Carton Conv Stopper Ret
+      '115':
+            - {pin: 6 , module: 7, id: IDI 6-7   } # Carton Conv. Cylinder Ext
+            - {pin: 7 , module: 7, id: IDI 7-7   } # Carton Conv. Cylinder Ret
+      '120':
+            - {pin: 8 , module: 7, id: IDI 8-7   } # Carton Conv Pusher Ext
+            - {pin: 9 , module: 7, id: IDI 9-7   } # Carton Conv Pusher Ret
+      '121':
+            - {pin: 10, module: 7, id: IDI 10-7  } # Carton Buffer Pick Station Pusher Ext
+            - {pin: 11, module: 7, id: IDI 11-7  } # Carton Buffer Pick Station Pusher Ret
+      '122':
+            - {pin: 1 , module: 9, id: IDI 1-9   } # B1 - OUT0
+            - {pin: 2 , module: 9, id: IDI 2-9   } # B2 - OUT1
+            - {pin: 3 , module: 9, id: IDI 3-9   } # B3 - OUT2
+
+outputListModel:
+      '0': # Control
+            - {name: Tower Light    Blue,                   pin: 8 , module: 1, id: IDO 8-1  }
+            - {name: Tower Light Green,                     pin: 9 , module: 1, id: IDO 9-1  }
+            - {name: Tower Light Yellow,                    pin: 10, module: 1, id: IDO 10-1 }
+            - {name: Tower Light    Red,                    pin: 11, module: 1, id: IDO 11-1 }
+            - {name: Reset,                                 pin: 2 , module: 1, id: IDO 2-1  }
+            - {name: Stop,                                  pin: 4 , module: 1, id: IDO 4-1  }
+            - {name: Start,                                 pin: 3 , module: 1, id: IDO 3-1  }
+            - {name: Buzzer,                                pin: 12, module: 1, id: IDO 12-1 }
+      '1': # Base Shipper Tray Input
+            {}
+      '2': # Top Shipper Tray Input
+            {}
+      '3': # Input Tray Pick & Place
+            - {name: Input PnP Yellow LED Indicator,        pin: 10, module: 4, id: IDO 10-4 }
+            - {name: Input PnP Green LED Indicator,         pin: 10, module: 7, id: IDO 10-7 }
+      '4': # Afolding
+            {}
+      '5': # TomO Gripper
+            {}
+      '6': # Carton Loader
+            {}
+      '7': # Carton Stack and Transfer (PIM)
+            {}
+            # - {name: A9 - SETUP,                            pin: 9 , module: 8, id: IDO 9-8  }
+            # - {name: A11 - DRIVE,                           pin: 11, module: 8, id: IDO 11-8 }
+            # - {name: A12 - Reset,                           pin: 12, module: 8, id: IDO 12-8 }
+            # - {name: A13 - SVON,                            pin: 13, module: 8, id: IDO 13-8 }
+      '8': # Tray transfer and placement
+            {}
+      '9': # Output tray Pick & Place
+            {}
+      '10': # Carton Rotation Conveyor 10a
+            # - {name: Carton Rotation Cylinder 90p,          pin: 5 , module: 7, id: IDO 5-7  }
+            # - {name: Carton Rotation Cylinder 5/30p,        pin: 7 , module: 7, id: IDO 7-7  }
+            - {name: Rotational Conveyor Forward Move,      pin: 1 , module: 8, id: IDO 1-8  }
+            - {name: Rotational Conveyor Alarm Reset ,      pin: 2 , module: 8, id: IDO 2-8  }
+      '11': # Infeed Carton Conveyor 10b
+            - {name: Air Blower 30/90p,                     pin: 4 , module: 7, id: IDO 4-7  }
+            - {name: Air Blower 5p,                         pin: 6 , module: 7, id: IDO 6-7  }
+            - {name: Infeed Conveyor Forward Move,          pin: 11, module: 7, id: IDO 11-7 }
+            - {name: Infeed Conveyor Alarm Reset ,          pin: 12, module: 7, id: IDO 12-7 }
+      '12': # Carton Sampling Conveyor 10c
+            - {name: Sampling Conveyor Forward Move,        pin: 13, module: 7, id: IDO 13-7 }
+            - {name: Sampling Conveyor Alarm Reset ,        pin: 14, module: 7, id: IDO 14-7 }
+      '13': # Output tray stack (Trolley)
+      #     {}
+            - {name: Trolley 1 Yellow LED Indicator,        pin: 6 , module: 4, id: IDO 6-4  }
+            - {name: Trolley 2 Yellow LED Indicator,        pin: 8 , module: 4, id: IDO 8-4  }
+            - {name: Trolley 1 Green LED Indicator,         pin: 8 , module: 7, id: IDO 8-7  }
+            - {name: Trolley 2 Green LED Indicator,         pin: 9 , module: 7, id: IDO 9-7  }
+
+inputListModel:
+      '0': # Control
+            - {name: Master Reset,                          pin: 1 , module: 1, id: IDI 1-1  }
+            - {name: Reset,                                 pin: 2 , module: 1, id: IDI 2-1  }
+            - {name: Stop,                                  pin: 4 , module: 1, id: IDI 4-1  }
+            - {name: Start,                                 pin: 3 , module: 1, id: IDI 3-1  }
+            - {name: Emergency,                             pin: 14, module: 1, id: IDI 14-1 }
+            - {name: Guard Door 1 Sensor Feedback,          pin: 3 , module: 2, id: IDI 3-2  }
+            - {name: Carton Transfer Door Feedback,         pin: 8 , module: 1, id: IDI 8-1  }
+            - {name: Emergency Stop 1,                      pin: 12, module: 2, id: IDI 12-2 }
+            - {name: Emergency Stop 2,                      pin: 13, module: 2, id: IDI 13-2 }
+            - {name: Emergency Stop 3,                      pin: 15, module: 2, id: IDI 15-2 }
+            - {name: Emergency Stop 4,                      pin: 16, module: 2, id: IDI 16-2 }
+            - {name: Emergency Stop 5,                      pin: 10, module: 5, id: IDI 10-5 }
+            - {name: Emergency Stop 6,                      pin: 11, module: 5, id: IDI 11-5 }
+            - {name: Incoming Air Feedback,                 pin: 9 , module: 1, id: IDI 9-1  }
+            - {name: Controlled Air F/B,                    pin: 7 , module: 5, id: IDI 7-5  }
+      '1': # Base Shipper Tray Input
+            - {name: BSTIM Pickup Height Reached,           pin: -2, module: -1,id: AI  01-1 }
+            - {name: BSTIM Door Switch,                     pin: 6 , module: 2, id: IDI 6-2  }
+      '2': # Top Shipper Tray Input
+            - {name: TSTIM Door Switch,                     pin: 14, module: 2, id: IDI 14-2 }
+            - {name: TSTIM Pickup Height Reached,           pin: -1, module: -1,id: AI  02-1 }
+      '3': # Input Tray Pick & Place
+            - {name: Input PnP Curtain Mute F/B,            pin: 12, module: 1, id: IDI 12-1 }
+            - {name: Input PnP Curtain Interrupt,           pin: 16, module: 1, id: IDI 16-1 }
+      '4': # Afolding
+            {}
+      '5': # TomO Gripper
+            {}
+      '6': # Carton Loader
+            - {name: Tray Presence Sensor,                  pin: 4 , module: 4, id: IDI 4-4  }
+      '7': #  Carton Stack and Transfer (PIM)
+            # - {name: B7 - BUSY,                             pin: 7 , module: 9, id: IDI 7-9  }
+            # - {name: B9 - SETON,                            pin: 9 , module: 9, id: IDI 9-9  }
+            # - {name: B10 - INP,                             pin: 10, module: 9, id: IDI 10-9 }
+            # - {name: B11 - SVRE,                            pin: 11, module: 9, id: IDI 11-9 }
+            # - {name: B13 - ALARM,                           pin: 13, module: 9, id: IDI 13-9 }
+            - {name: Carton Stack Height Check Pos 1,       pin: -4, module: -1,id: AI  04-1 }
+            - {name: Carton Stack Height Check Pos 2,       pin: -1, module: -2,id: AI  01-2 }
+      '8': # Tray transfer and placement
+            - {name: Tray Present,                          pin: 13, module: 4, id: IDI 13-4 }
+            - {name: Tray End Return,                       pin: 14, module: 4, id: IDI 14-4 }
+      '9': # Output Tray Pick & Place
+            - {name: Tray Stack Height Feedback,            pin: -3, module: -1,id: AI  03-1 }
+      '10': # Carton Rotation Conveyor 10a
+            - {name: Incoming Carton Rotation Present,      pin: 16, module: 9, id: IDI 16-9 }
+            - {name: Rotation Conveyor Line Clearance F/B,  pin: 12, module: 9, id: IDI 12-9 }
+
+      '11': # Infeed Carton Conveyor 10b
+            - {name: Infeed Conv 90p Detect,                pin: 7 , module: 8, id: IDI 7-8  }
+            - {name: Infeed Conv 5/30p Pos 2,               pin: 8 , module: 8, id: IDI 8-8  }
+            - {name: Infeed Conv 5/30p Pos 1,               pin: 9 , module: 8, id: IDI 9-8  }
+            - {name: Carton Pick Pusher Pos 2,              pin: 10, module: 8, id: IDI 10-8 }
+            - {name: Carton Pick Pusher Pos 1,              pin: 11, module: 8, id: IDI 11-8 }
+            - {name: Infeed Conveyor Carton Jam,            pin: 12, module: 8, id: IDI 12-8 }
+            - {name: Sampling Carton Detect,                pin: 13, module: 8, id: IDI 13-8 }
+            - {name: Infeed Conveyor Carton full. ,         pin: 14, module: 8, id: IDI 14-8 }
+            - {name: Carton Line Clearance,                 pin: -2, module: -2,id: AI  02-2 }
+      '12': # Carton Sampling Conveyor 10c
+            - {name: Sampling Conveyor Carton Present,      pin: 15, module: 8, id: IDI 15-8 }
+            - {name: Sampling Conveyor Carton Full,         pin: 16, module: 8, id: IDI 16-8 }
+      '13': # Tray stack (trolley)
+            - {name: Shipper Stack 1 Present,               pin: 12, module: 5, id: IDI 12-5 }
+            - {name: Shipper Stack 2 Present,               pin: 13, module: 5, id: IDI 13-5 }
+            - {name: Shipper Stack 3 Present,               pin: 14, module: 5, id: IDI 14-5 }
+            - {name: Shipper Stack 4 Present,               pin: 15, module: 5, id: IDI 15-5 }
+            - {name: Trolley 1 Load Present Sensor,         pin: 16, module: 5, id: IDI 16-5 }
+            - {name: Trolley 2 Load Present Sensor,         pin: 1 , module: 6, id: IDI 1-6  }
+            - {name: Trolley 1 Curtain Mute F/B,            pin: 10, module: 1, id: IDI 10-1  }
+            - {name: Trolley 2 Curtain Mute F/B,            pin: 11, module: 1, id: IDI 11-1  }
+            - {name: Trolley 1 Curtain Interrupt,           pin: 13, module: 1, id: IDI 13-1  }
+            - {name: Trolley 2 Curtain Interrupt,           pin: 15, module: 1, id: IDI 15-1  }
+

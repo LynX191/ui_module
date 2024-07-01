@@ -1,0 +1,35 @@
+#!/usr/bin/expect -f
+
+# Iterate over IP addresses from 192.168.0.221 to 192.168.0.223
+for {set HOSTID 221} {$HOSTID <= 223} {incr HOSTID} {
+
+    set timeout -1
+    set prompt "(#|\\$) $"
+
+    if {$HOSTID > 0} {
+        spawn ssh "tomo@192.168.0.$HOSTID"
+        expect -gl "password"
+        send "tomo\r"
+    } else {
+        spawn /bin/bash
+    }
+    expect -re $prompt
+
+    send "sudo bash\r"
+    expect -re $prompt
+
+    send "sshpass -p 'tomo' ssh tomo@192.168.0.224 'date +%s'\r"
+    expect {
+        -re "\r\n(.+)\r\n" {
+            # Capture the output into a variable
+            # set output $expect_out(1,string)
+            send "sudo timedatectl set-ntp off && sudo date +%s -s @$expect_out(1,string)\r"
+        }
+    }
+
+    send "exit\r"
+    expect -re $prompt
+
+    send "exit\r"
+    expect eof
+}

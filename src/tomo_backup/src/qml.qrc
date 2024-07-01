@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Dialog/ModalDialogBox.qml</file>
+        <file>../../tomo_ui/src/Resources/loading.gif</file>
+        <file>../../tomo_ui/src/Component/MaterialDesign/MaterialDesignIcon.qml</file>
+        <file>../../tomo_ui/src/Component/MaterialDesign/MaterialDesignIconGlyphs.js</file>
+        <file>../../tomo_ui/src/Component/MaterialDesign/materialdesignicons-webfont.ttf</file>
+        <file>../../tomo_ui/src/Component/ButtonText.qml</file>
+    </qresource>
+</RCC>

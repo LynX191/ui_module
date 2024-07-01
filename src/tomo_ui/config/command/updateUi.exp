@@ -1,0 +1,30 @@
+#!/usr/bin/expect -f
+# Retrieve the argument
+set uiZipPath [lindex $argv 0]
+set uiZipName [lindex $argv 1]
+set uiName [lindex $argv 2]
+
+set timeout -1
+set prompt "(#|\\$) $"
+
+spawn /bin/bash
+send "sudo bash \r"
+expect -re $prompt
+send "cd ~/ws_ui \r"
+expect -re $prompt
+send "sudo rm -rf install_bk.zip \r"
+expect -re $prompt
+send "sudo zip -r install_bk.zip install \r"
+expect -re $prompt
+send "sudo apt install -y unzip \r"
+expect -re $prompt
+send "sudo rm -rf install \r"
+expect -re $prompt
+send "sudo unzip -a -o $uiZipName \r"
+expect -re $prompt
+send "sudo rm -rf $uiZipName \r"
+expect -re $prompt
+send "exit\r"
+expect -re $prompt
+send "exit\r"
+expect eof

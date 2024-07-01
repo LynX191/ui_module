@@ -1,0 +1,56 @@
+#!/usr/bin/expect -f
+# Retrieve the argument
+set imagingZipPath [lindex $argv 0]
+set imagingZipName [lindex $argv 1]
+set imagingName [lindex $argv 2]
+set HOSTID [lindex $argv 3]
+set PASS [lindex $argv 4]
+set result 999
+
+# Function to simulate some processing and returning a value
+proc return_value {value} {
+    puts $value
+}
+
+set timeout -1
+set prompt "(#|\\$) $"
+
+spawn ssh "$HOSTID"
+expect -gl "password"
+send "$PASS\r"
+
+expect -re $prompt
+
+send "sudo chown -R tomo /home/tomo/tomo_config & sudo chown -R tomo /home/tomo/ws_imaging & sudo rm -rf /home/tomo/ws_imaging/src\r"
+expect -re $prompt
+send "cd ~/tomo_config/\r"
+expect -re $prompt
+send "sudo apt install -y unzip \r"
+expect -re $prompt
+send "sudo rm -rf $imagingName \r"
+expect -re $prompt
+send "unzip -a -o $imagingZipName \r"
+expect -re $prompt
+send "cd $imagingName \r"
+expect -re $prompt
+send "chmod +x setup_imaging_source.sh & bash setup_imaging_source.sh\r"
+expect {
+    -re "successfully" {
+        return_value "successfully"
+        set result 0
+    }
+    timeout {
+        return_value "setup script failed or timed out"
+        set result 1
+    }
+}
+expect -re $prompt
+send "cd .. \r"
+expect -re $prompt
+send "sudo rm -rf $imagingName \r"
+expect -re $prompt
+send "sudo rm -rf $imagingZipName \r"
+expect -re $prompt
+
+send "exit\r"
+expect eof

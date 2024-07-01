@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TomO-UI
+Exec=sudo bash -c "sudo bash ui_moduleinstall/share/tomo_ui/config/command/check_uri.sh"
+Type=Application
+Terminal=true
+Icon=/home/tomo/ui_moduleinstall/share/tomo_ui/config/resource/tomoc.png
+Hidden=false
+

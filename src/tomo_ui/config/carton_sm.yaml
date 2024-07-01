@@ -1,0 +1,23 @@
+# Mode: defined by a '|' separated strings indicating its content
+#   Command|Alias|List
+#     Command: The actual string that is sent by the UI to convey the user interaction
+#     Alias  : Text to be displayed in the UI for a particular mode
+#     List   : A list of semicolon separated strings to be populated in a combo-box
+# This file is to be placed in ~/tomo_config/ directory
+# Udupa; Sep'2023
+
+modes:
+  m0: 'm|Imaging|Disable;Enable;DryRun'
+  # m1: 'e|State|Initialize;Fill Cartons;Transfer Top;Close Box;Transfer Base;Test: Input Base;Test: Input Top;Test: Folding Base;Test: Folding Top;Test: Transfer Base;Test: Transfer Top;Test: Fill;Test: Output;Test: FillCycle'
+  # m2: 'v|Vel %|100;95;90;85;80;75;70;65;60;55;50;40;30;20;10;5'
+  # m3: 'a|Acc %|100;95;90;85;80;75;70;65;60;55;50;40;30;20;10;5'
+  # m4: 'z|Optimize|Disable;Enable'
+  # m5: 'f|FM|Off;On;Dry'
+  # m6: 'c|CM|Off;On;Dry'
+  # m7: 'i|IM|Off;On;Dry'
+  # m8: 'o|OM|Off;On;Dry'
+  # m9: 't|TM|Off;On;Dry'
+  # m10: 'g|GM|Off;On;Dry'
+  # m11: 'p|Product|5;30;90'
+  # m12: 'l|Loader Module|Off;On;Dry'
+  # m13: 's|Signal Module|Off;On;Dry'

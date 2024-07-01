@@ -1,0 +1,37 @@
+#!/usr/bin/expect -f
+# Retrieve the argument
+set controlZipPath [lindex $argv 0]
+set controlZipName [lindex $argv 1]
+set controlName [lindex $argv 2]
+set HOSTID [lindex $argv 3]
+set PASS [lindex $argv 4]
+
+set timeout -1
+set prompt "(#|\\$) $"
+
+spawn ssh "$HOSTID"
+expect -gl "password"
+send "$PASS\r"
+expect -re $prompt
+
+send "sudo bash\r"
+expect -re $prompt
+
+send "cd ~/ws_tomo \r"
+expect -re $prompt
+send "sudo rm -rf install_bk.zip \r"
+expect -re $prompt
+send "sudo zip -r install_bk.zip install \r"
+expect -re $prompt
+send "sudo apt install -y unzip \r"
+expect -re $prompt
+send "sudo rm -rf install \r"
+expect -re $prompt
+send "sudo unzip -a -o $controlZipName \r"
+expect -re $prompt
+send "sudo rm -rf $controlZipName \r"
+expect -re $prompt
+send "exit\r"
+expect -re $prompt
+send "exit\r"
+expect eof

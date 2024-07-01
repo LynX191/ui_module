@@ -1,0 +1,118 @@
+ErrorIDToString:
+  reset: "Reset Clear all error messages"
+
+  xc1: "Xavier 1 connection error."
+  xc2: "Xavier 2 connection error."
+  xc3: "Xavier 3 connection error."
+  xc4: "Xavier 4 connection error."
+
+  estop1: "Emergency Stop 1 Activated"
+  estop2: "Emergency Stop 2 Activated"
+  estop3: "Emergency Stop 3 Activated"
+  estop4: "Emergency Stop 4 Activated"
+  estop5: "Emergency Stop 5 Activated"
+  estop6: "Emergency Stop 6 Activated"
+  guard1: "Guard Door 1 is open"
+  guard1f: "Guard Door 1 - left door is open"
+  guard2: "Guard Door 2 is open"
+  guard3: "Guard Door 3 is open"
+  guard: "Door is unlocked"
+  voltage: "Voltage interrupted" # Not used
+  air: "Air pressure not sufficient"
+  airc: "Controlled Air is off"
+  init: "Module initialization ERROR"
+  vision: "Vision Server is not responding"
+  wago: "Wago communication lost"
+  delta: "Delta Servo communication lost; Check *** axis" # Message text overridden by control
+  config_1: "Xavier 1 configuration file corrupt. Restore from backup" #edited by PE. XC1 Configuration is invalid. Restore from backup
+  config_2: "Xavier 2 configuration file corrupt. Restore from backup" #edited by PE. XC2 Configuration is invalid. Restore from backup
+  config_3: "Xavier 3 configuration file corrupt. Restore from backup" #edited by PE. XC3 Configuration is invalid. Restore from backup
+  config_4: "Xavier 4 configuration file corrupt. Restore from backup" #edited by PE. XC4 Configuration is invalid. Restore from backup
+  ethercat: "TomO EtherCAT communication failed"
+  host: "Host communication failed"
+
+  lot_starting_5: "5 Pack Lot starting"
+  lot_starting_30: "30 Pack Lot starting"
+  lot_starting_90: "90 Pack Lot starting"
+  lot_resuming_5: "5 Pack Lot resuming"
+  lot_resuming_30: "30 Pack Lot resuming"
+  lot_resuming_90: "90 Pack Lot resuming"
+  lot_start: "Lot Started"
+  lot_ending: "Lot Ending"
+  lot_end: "Lot Ended"
+
+  tomo_top_xfer: "TomO failed to transfer top shipper tray. Please close shipper tray manually" #changed by PE
+  tomo_top_close: "TomO failed to close shipper tray. Please close manually" #changed by PE
+  tomo_fill: "Carton loading fail"
+  tomo_cam: "TomO Head camera connection error" #changed by PE, previously was TomO Vision Camera error
+  tomo_planning_error: "Planning Error" # Not used
+
+  fm_clear: "Clear Afolding station"
+  fm_base: "Bottom Shipper Folding Inspection: Fail."
+  fm_top: "Top Shipper Folding Inspection: Fail."
+  fm_fail: "Afolding ERROR. Clear Afolding module" #edited by PE
+  fm_x: "Afolding X-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  fm_y: "Afolding Y-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+
+  cm_cam: "Carton Stacker camera error" #changed by PE, previously was Carton Transfer Vision Camera error
+  cm_init: "Lot initialization. Clear Carton Transfer station"
+  cm_door: "Carton Transfer door open"
+  cm_audit_full: "Carton in Carton Sampling Conveyor is full"
+  cm_conveyor: "Stacking Error: Failed to push cartons from conveyor. Remove cartons between conveyor and stack"
+  cm_stack: "Stacking Error: Failed to push cartons from stack. Remove cartons between stack and buffer"
+  cm_pick1: "Stacking Error: Failed to push cartons to main pick station. Remove cartons from pick station"
+  cm_pick2: "Stacking Error: Failed to push cartons to buffer pick station. Remove cartons from buffer pick station"
+  cm_jam: "Infeed Carton Conveyor jammed" #edited by PE
+  cm_full: "Infeed Carton Conveyor is full"
+  cm_line_clear: "Line clearance timed out. Check Conveyor"
+
+  im_cam: "Shipper Tray Vision camera error" #edited by PE
+  im_pause: "Input PnP curtain sensor is muted" #changed by PE
+  im_pick_top: "Input PnP fail vacuum suction. Failed to pick top shipper tray"
+  im_pick_base: "Input PnP fail vacuum suction. Failed to pick bottom shipper tray"
+  im_int: "Input PnP curtain sensor interrupted" #changed by PE
+  im_x: "Input PnP X-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  im_y: "Input PnP Y-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  im_z: "Input PnP pneumatic cylinder error. Please check cylinder condition"
+  im_fail: "Input PnP fail vacuum suction"
+
+  om_pause_t1: "Curtain Sensor Trolley #1 is muted"
+  om_pause_t2: "Curtain Sensor Trolley #2 is muted"
+  om_slider: "Output shipper tray stuck on tray transfer roller. Push manually"
+  om_push: "Output shipper tray failed to push to pick station. Push manually"
+  om_t1_invalid: "Output Trolley #1 stack height check failed. Unload trolley"
+  om_t2_invalid: "Output Trolley #2 stack height check failed. Unload trolley"
+  om_fail: "Output PnP: Unknown ERROR. Restart UI"
+  om_gripper: "Output PnP gripper cylinder error. Check cylinder condition"
+  om_load: "Load an empty trolley at Output Tray Stack"
+  om_remove_t1: "Lot Initialization: Please clear trolley #1"
+  om_remove_t2: "Lot Initialization: Please clear trolley #2"
+  om_full: "Trolley is full. Please clear the trolley" #changed by PE. previously was Trollies are full. Please clear
+  om_int_t1: "Curtain Sensor Trolley #1 interrupted"
+  om_int_t2: "Curtain Sensor Trolley #2 interrupted"
+  om_no_trolley: "No empty trolley present at Output Tray Stack"
+  om_not_empty_t1: "Newly inserted trolley #1 is not empty."
+  om_not_empty_t2: "Newly inserted trolley #2 is not empty."
+  om_load_fail_t1: "Trolley 1 lock feedback error"
+  om_load_fail_t2: "Trolley 2 lock feedback error"
+  om_x: "Output PnP X-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  om_y: "Output PnP Y-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  om_z: "Output PnP Z-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+
+  tm_base: "Bottom Shipper inspection: Fail."
+  tm_top: "Top Shipper inspection: Fail." #edited by PE
+  tm_door1: "TSTIM Door open"
+  tm_door2: "BSTIM Door open"
+  tm_fail: "BSTIM/TSTIM motion axis unable to reach expected height" #changed by PE, from Input ERROR. Clear Afolding
+  tm_base_low: "Low level shipper tray at BSTIM"
+  tm_base_empty: "Bottom Shipper Tray Input Module (BSTIM): Empty. Please refill."
+  tm_top_low: "Low level shipper tray at TSTIM"
+  tm_top_empty: "Top Shipper Tray Input Module (TSTIM): Empty. Please refill."
+  tm_base_wrong: "Wrong Bottom Shipper Tray. Please check."
+  tm_b: "BSTIM Z-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+  tm_t: "TSTIM Z-axis movement error (Servo alarm 'AL###')" # Message text overridden by control
+
+  lm_init: "Shipper tray is present at Carton Loader" #changed by PE
+  lm_no_shipper: "Failed to transfer base shipper tray to Carton Loader station; Please place manually"
+  lm_push: "Fail to push out shipper tray from Carton Loader station. Please check"
+

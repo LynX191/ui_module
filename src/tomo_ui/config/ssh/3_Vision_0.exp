@@ -1,0 +1,40 @@
+#!/usr/bin/expect -f
+
+# Expect script to launch control 'imaging_server' from another Xavier
+# Kills any remnant previous instance
+# Set HOSTID based on control server Xavier's IP address (192.168.0.***)
+# Udupa; Aug'23
+
+
+set HOSTID 2
+
+set timeout -1
+set prompt "(#|\\$) $"
+
+
+if {$HOSTID > 0} {
+	spawn ssh "tomo@192.168.0.$HOSTID"
+	expect -gl "password"
+	send "tomo\r"
+} else {
+	spawn /bin/bash
+}
+expect -re $prompt
+
+send "sudo bash\r"
+expect -re $prompt
+
+send "pkill -9 python3\r"
+expect -re $prompt
+
+send "rosclean purge -y\r"
+expect -re $prompt
+
+send "clear && cd ~/ws_imaging && source ./devel/setup.bash && roslaunch tomo_imaging imaging_server.launch\r"
+expect -re $prompt
+
+send "exit\r"
+expect -re $prompt
+
+send "exit\r"
+expect eof

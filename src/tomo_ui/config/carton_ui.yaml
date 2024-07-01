@@ -1,0 +1,48 @@
+CamsFocus:
+  - Tomo Pose
+  - Tomo
+  - TSTIM
+  - Carton
+General:
+  BgColorCmd: "#000000"
+  TabIndex: 0
+  TabOfSystemlog: 4
+  HeightOfSystemlog: 215
+  YOfSystemlog: 865
+  TextSizeCmd: 16
+  TextFontCmd: Monospace
+  LineSpacingCmd: 7
+  LimitLineCmd: 10000
+  ScrollLineCmd: 20
+  ExitPass: 77+977+9P2JR77+9e++/vX5u77+9
+  ProductId: 2
+  FreeSpace: 5
+ControlConfig:
+  DryrunMode: true
+  BypassMode: false
+  SoundMode: true
+  SliderS1: 20
+  SliderS2: 20
+  SliderS3x: 100
+  SliderS3y: 100
+  SliderS4x: 10
+  SliderS4y: 10
+  SliderS9x: 200
+  SliderS9y: 200
+  SliderS9z: 200
+Cameras ID:
+  - 18443010611D631100
+  - 184430108165940F00
+  - 1844301041F6621200
+Default Cameras ID:
+  - 18443010611D631100
+  - 184430108165940F00
+  - 1844301041F6621200
+AccessRights:
+  Control Master: 1
+  Production & Control: 1
+  IO Control: 1
+  Settings: 1
+  System Log: 1
+  Parameters: 1
+  ExitPass: 1
